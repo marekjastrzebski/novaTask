@@ -2,9 +2,25 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\LocodesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+#[ApiResource(
+    operations: [
+        new GetCollection()
+    ]
+)]
+#[ApiFilter(
+    SearchFilter::class,
+    properties: [
+        'locode' => 'exact',
+        'nameWoDiacritics' => 'partial'
+    ]
+)]
 #[ORM\Entity(repositoryClass: LocodesRepository::class)]
 class Locodes
 {
