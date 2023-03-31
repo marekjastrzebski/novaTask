@@ -21,7 +21,7 @@ class DatabaseTools
         $this->entityManager
             ->getConnection()
             ->executeQuery(
-                $platform?->getTruncateTableSQL('locodes', true)
+                $platform?->getTruncateTableSQL($tableName, true)
             );
     }
 }
